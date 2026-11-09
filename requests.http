@@ -1,0 +1,37 @@
+@host = http://localhost:3000
+
+### 1. Список автозапчастин
+GET {{host}}/auto-parts
+
+### 2. Створити автозапчастину (slug генерується автоматично)
+POST {{host}}/auto-parts
+Content-Type: application/json
+
+{
+  "title": "Паливний насос Bosch 0580454001",
+  "price": 4100,
+  "oemCode": "0580454001",
+  "condition": "new",
+  "carBrand": "Audi"
+}
+
+### 3. Список замовлень
+GET {{host}}/orders
+
+### 4. Створити замовлення (200 OK, 201 Created)
+POST {{host}}/orders
+Content-Type: application/json
+
+{
+  "productId": "1",
+  "quantity": 2
+}
+
+### 5. Замовлення з неіснуючим товаром (404)
+POST {{host}}/orders
+Content-Type: application/json
+
+{
+  "productId": "99999",
+  "quantity": 1
+}
